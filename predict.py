@@ -1,5 +1,3 @@
-# predict_yolo_image.py
-
 import cv2
 from ultralytics import YOLO
 
