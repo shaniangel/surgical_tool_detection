@@ -121,12 +121,12 @@ output_path = "output.jpg"
 
 4. To **create an output image**, set `create_output_image=True`:
 ```python
-predictions = predict_on_image(model, image_path, output_path, create_output_image=True)
+predictions = predict_on_image(model, image_path, output_path, create_output_image=True, output_image_path)
 ```
 
 5. To **generate a prediction file only** in `(x_center, y_center, width, height, confidence, class)` format, set:
 ```python
-predictions = predict_on_image(model, image_path, output_path, create_output_image=False)
+predictions = predict_on_image(model, image_path, output_path, create_output_image=False, output_image_path)
 ```
 
 > Output files will be saved in the project directory.
@@ -149,15 +149,11 @@ video_path = "path/to/your/video.mp4"
 output_path = "path/to/save/prediction/files"
 ```
 
-4. To **generate an output video**, set `generate_output_video=True`:
+4. To **generate an output video**:
 ```python
-predict_on_video(model, video_path, output_path, generate_output_video=True)
+predict_on_video(model, video_path, output_path)
 ```
 
-5. To **generate prediction files only**, set:
-```python
-predict_on_video(model, video_path, output_path, generate_output_video=False)
-```
 
 > - The output video will be saved in the project folder.  
 > - Prediction files (in YOLO format) will be saved under a folder called `frame_predictions` at the specified `output_path`.
