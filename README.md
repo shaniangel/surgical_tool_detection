@@ -1,4 +1,7 @@
-# 🔬 Surgical Tool Detection with Semi-Supervised Learning – HW1
+# 🔬 Surgical Tool Detection with Semi-Supervised Learning
+<p align="center">
+  <img src="image_output.jpg" width="500"/>
+</p>
 
 ---
 
