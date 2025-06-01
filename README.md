@@ -109,7 +109,7 @@ The `predict.py` script is used to detect surgical tools and hands in a single i
 #### Instructions:
 
 1. You can download the trained model weights from this repository:
-📥[Download weights.pt](./weights.pt)
+📥[weights.pt](./weights.pt)
 2. Open the `predict.py` file.
 3. Modify the following lines in the `main()` function:
 
