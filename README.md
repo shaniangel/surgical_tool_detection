@@ -30,35 +30,47 @@ We utilize **YOLOv8n** due to its optimal tradeoff between speed and accuracy.
 
 ### 🔹 Experimental Pipeline
 
-#### **Stage 1: Baseline**
-- Trained YOLOv8n on the **original 61 labeled images** (unaltered).
+Throughout the project, we employed the **YOLOv8n** model as the primary object detection architecture. The experimental procedure was structured into **five progressive stages**, each designed to systematically improve model performance by enriching the training data.
 
-#### **Stage 2: Data Augmentation**
-- Applied the following augmentations to both training and validation sets:
-  - Horizontal Flip
-  - Rotation
-  - Brightness Adjustment
-  - Scaling
-  - Blurring
-  - Gaussian Noise
-- Resulted in a significantly larger training dataset.
-- Trained a new model on this **augmented + original** data.
+---
 
-#### **Stage 3: Semi-Supervised Learning (In-Distribution)**
-- Extracted frames from **in-distribution (ID)** surgery videos.
-- Used the Stage 2 model to generate predictions.
-- Selected high-confidence predictions (**confidence > 0.85**) as **pseudo-labels**.
-- Added these pseudo-labeled frames to the training set.
+### 🔹 Stage 1: Baseline Model
+We began by training a baseline model on the original dataset, which consisted of **61 labeled training images**. This model served as a reference point to evaluate the impact of subsequent dataset enhancements.
 
-#### **Stage 4: Augmenting Pseudo-Labeled Data**
-- Applied the same augmentations from Stage 2 to the pseudo-labeled images from Stage 3.
-- Combined with previous datasets and trained a stronger model.
+---
 
-#### **Stage 5: Incorporating OOD Data**
-- Extracted frames from the **out-of-distribution (OOD)** surgery video.
-- Used the Stage 4 model to predict bounding boxes.
-- Retained predictions with **confidence > 0.85** as additional pseudo-labeled images.
-- Trained a **final model** on this enriched dataset.
+### 🔹 Stage 2: Data Augmentation
+To improve generalization and robustness, we expanded the dataset by generating **six synthetic variants per image** for the 61 training images and 10 validation images.  
+Augmentation techniques included:
+- Horizontal flipping  
+- Rotation  
+- Brightness adjustment  
+- Scaling  
+- Blurring  
+- Gaussian noise  
+
+The model was retrained on the combined set of original and augmented images.
+
+---
+
+### 🔹 Stage 3: Semi-Supervised Learning on In-Distribution Videos
+In this stage, we leveraged **semi-supervised learning (SSL)** to incorporate unlabeled frames from **in-distribution (ID) videos**. The model from Stage 2 generated predictions on extracted video frames.  
+Only frames with **confidence scores > 0.7** were selected and added as **pseudo-labeled data**.
+
+- The training set now included:
+  - Original and augmented images from Stage 2 (`X` images)
+  - High-confidence pseudo-labeled frames from ID videos (`Y` images)
+  - **Total: Z images**
+
+This enriched dataset was split into new training and validation sets, and a model was retrained.
+
+---
+
+### 🔹 Stage 4: Incorporation of Out-of-Distribution Data
+We further enhanced the dataset by including frames from an **out-of-distribution (OOD) video** (recorded on a different day with a different camera setup).  
+The model from Stage 3 predicted on these frames, and we again selected **only high-confidence (>0.7) predictions**. These were added to the training set.
+
+A final model was trained on this comprehensive and diverse dataset, better equipping it for real-world generalization.
 
 ---
 
