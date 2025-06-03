@@ -53,6 +53,9 @@ Augmentation techniques included:
 - Gaussian noise  
 
 The model was retrained on the combined set of original and augmented images.
+<p align="center">
+  <img src="augmentation_example.png" width="500"/>
+</p>
 
 ---
 
