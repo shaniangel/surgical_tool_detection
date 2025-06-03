@@ -135,7 +135,6 @@ predictions = predict_on_image(model, image_path, output_path, create_output_ima
 predictions = predict_on_image(model, image_path, output_path, create_output_image=False, output_image_path)
 ```
 
-> Output files will be saved in the project directory.
 
 ---
 
@@ -162,5 +161,3 @@ predict_on_video(model, video_path, output_path)
 
 
 > - The output video will be saved in the project folder.  
-> - Prediction files (in YOLO format) will be saved under a folder called `frame_predictions` at the specified `output_path`.
-
