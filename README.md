@@ -64,9 +64,9 @@ In this stage, we leveraged **semi-supervised learning (SSL)** to incorporate un
 Only frames with **confidence scores > 0.7** were selected and added as **pseudo-labeled data**.
 
 - The training set now included:
-  - Original and augmented images from Stage 2 (`X` images)
-  - High-confidence pseudo-labeled frames from ID videos (`Y` images)
-  - **Total: Z images**
+  - Original and augmented images from Stage 2 (497 images)
+  - High-confidence pseudo-labeled frames from ID videos (1,275 images)
+  - **Total: 1,772 images**
 
 This enriched dataset was split into new training and validation sets, and a model was retrained.
 
@@ -74,7 +74,7 @@ This enriched dataset was split into new training and validation sets, and a mod
 
 ### 🔹 Stage 4: Incorporation of Out-of-Distribution Data
 We further enhanced the dataset by including frames from an **out-of-distribution (OOD) video** (recorded on a different day with a different camera setup).  
-The model from Stage 3 predicted on these frames, and we again selected **only high-confidence (>0.7) predictions**. These were added to the training set.
+The model from Stage 3 predicted on these frames, and we again selected **only high-confidence (>0.7) predictions**. These were added to the training set (total of 1,937).
 
 A final model was trained on this comprehensive and diverse dataset, better equipping it for real-world generalization.
 
@@ -158,6 +158,3 @@ output_path = "path/to/save/prediction/files"
 ```python
 predict_on_video(model, video_path, output_path)
 ```
-
-
-> - The output video will be saved in the project folder.  
